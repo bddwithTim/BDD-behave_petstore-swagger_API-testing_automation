@@ -52,7 +52,7 @@ After cloning, prepare your development environment like so:
 * Activate the pre-commit hooks: `poetry run pre-commit install`
 
 
-## Test Execution:
+## Test Execution
 Test Execution commands:
 
 * Run all scenarios: `poetry run behave`
