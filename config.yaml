@@ -1,0 +1,12 @@
+browser:
+  url: https://petstore.swagger.io
+  headless: true
+  size: ~
+  extensions: false
+  gpu: true
+
+user:
+  email: automation@example.com
+  name: Automation
+  password: ~
+  secret: ~
