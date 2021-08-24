@@ -17,9 +17,8 @@ def step_impl_1(context: PetStoreContext, method: str, status: str):
 @when('I make a {method} request to "{resource}" with this form data')
 def step_impl_2(context: PetStoreContext, method: str, resource: str):
     content = json.loads(context.text.strip())
-    context.http_response = requests.request(method=method,
-                                             url=context.base_url + resource,
-                                             json=content)
+    context.http_response = requests.request(method=method, url=context.base_url + resource, json=content)
+
 
 @then("the response status code is {code:d}")
 def step_impl_3(context: PetStoreContext, code: int):
@@ -30,9 +29,12 @@ def step_impl_3(context: PetStoreContext, code: int):
 
 @when("I make a {method} request to the pet object")
 def step_impl_4(context: PetStoreContext, method: str):
-    requests.request(method=method,
-                     url=context.base_url +
-                         "/v2/pet/{}".format(context.pet_store_object["id"]))
+    if context.pet_store_object is None:
+        raise ValueError("No value stored in context.pet_store_object.")
+    requests.request(
+        method=method,
+        url=context.base_url + "/v2/pet/{}".format(context.pet_store_object["id"]),
+    )
 
 
 @given("a pet object is available in the petstore site")
@@ -64,8 +66,10 @@ def step_impl_5(context: PetStoreContext):
     )
     if context.http_response is None:
         raise ValueError("No HTTP response has been recorded")
-    context.pet_store_object = {"id": context.http_response.json()["id"],
-                                "name": context.http_response.json()["name"]}
+    context.pet_store_object = {
+        "id": context.http_response.json()["id"],
+        "name": context.http_response.json()["name"],
+    }
 
 
 @when("I make a {method} request to the store pet inventories")
@@ -76,6 +80,3 @@ def step_impl_6(context: PetStoreContext, method: str):
     :param method:
     :return:
     """
-
-
-
