@@ -45,7 +45,11 @@ Prerequisites:
   * Windows: `pip install poetry`
   * Linux/Mac: `pip3 install --user poetry`
 
-After cloning, prepare your development environment like so:
+[poetry](https://github.com/python-poetry/poetry) is a tool to handle dependency installation as well as building and packaging of Python packages. It only needs one file to do all of that: the new, [standardized](https://www.python.org/dev/peps/pep-0518/) `pyproject.toml`.
+
+In other words, poetry uses pyproject.toml to replace `setup.py`, `requirements.txt`, `setup.cfg`, `MANIFEST.in` and the newly added `Pipfile`.
+
+After cloning this repository, prepare your development environment like so:
 
 * Set the virtual environment in your project locally: `poetry config virtualenvs.in-project true --local`
 * Set up the Python virtual environment: `poetry install`
