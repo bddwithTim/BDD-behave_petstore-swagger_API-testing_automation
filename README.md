@@ -2,7 +2,7 @@
 This repository is for learning and practice purposes on authoring Gherkin scenarios in a BDD behave project.
 The sample scenarios covers API related tests from the sample server [Petstore server](https://petstore.swagger.io).
 
-For more coverage, feel free to add other API tests using the sample server.
+For more coverage, feel free to create pull requests to modify and/or add other API tests using the sample server.
 
 ## Prerequisites
 For both test authoring and execution:
