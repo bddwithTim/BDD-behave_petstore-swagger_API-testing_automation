@@ -2,7 +2,7 @@
 name = "petstore_swagger_bdd"
 version = "0.1.0"
 description = ""
-authors = ["tiMoy <timcacayan@yahoo.com>"]
+authors = [""]
 
 [tool.poetry.dependencies]
 python = "^3.7"
