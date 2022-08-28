@@ -30,18 +30,18 @@ def before_scenario(context: PetStoreContext, scenario: Scenario):
 
 
 def after_scenario(context: PetStoreContext, scenario: Scenario):
-    if scenario.status == "failed":
-        scenario_error_dir = Path("logs")
-        scenario_error_dir.mkdir(exist_ok=True)
-        base_name = time.strftime("%Y-%m-%d_%H%M%S_{}".format(re.sub(r'[/\\:*?"<>#]', "", scenario.name)[:60]))
-        log_file_path = scenario_error_dir / "{}.txt".format(base_name)
-        for step in scenario.steps:
-            if step.status in ["failed", "undefined"]:
-                log_file_path.write_text(
-                    "Scenario: {}\nStep: {} {}\nError Message: {}".format(
-                        scenario.name, step.keyword, step.name, step.error_message
-                    )
-                )
-                break
-        else:
-            log_file_path.write_text("Scenario: {}\nStep: N/A".format(scenario.name))
+    if scenario.status != "failed":
+        return
+    scenario_error_dir = Path("logs")
+    scenario_error_dir.mkdir(exist_ok=True)
+    base_name = time.strftime("%Y-%m-%d_%H%M%S_{}".format(re.sub(r'[/\\:*?"<>#]', "", scenario.name)[:60]))
+    log_file_path = scenario_error_dir / f"{base_name}.txt"
+    for step in scenario.steps:
+        if step.status in ["failed", "undefined"]:
+            log_file_path.write_text(
+                f"Scenario: {scenario.name}\nStep: {step.keyword} {step.name}\nError Message: {step.error_message}"
+            )
+
+            break
+    else:
+        log_file_path.write_text(f"Scenario: {scenario.name}\nStep: N/A")
