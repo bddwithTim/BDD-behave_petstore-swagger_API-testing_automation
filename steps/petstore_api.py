@@ -10,7 +10,7 @@ from expects import equal, expect
 def step_impl_1(context: PetStoreContext, method: str, status: str):
     context.http_response = requests.request(
         method=method,
-        url=context.base_url + "/v2/pet/findByStatus?status={}".format(status),
+        url=context.base_url + f"/v2/pet/findByStatus?status={status}",
     )
 
 
@@ -33,7 +33,7 @@ def step_impl_4(context: PetStoreContext, method: str):
         raise ValueError("No value stored in context.pet_store_object.")
     requests.request(
         method=method,
-        url=context.base_url + "/v2/pet/{}".format(context.pet_store_object["id"]),
+        url=context.base_url + f'/v2/pet/{context.pet_store_object["id"]}',
     )
 
 

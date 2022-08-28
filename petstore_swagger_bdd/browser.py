@@ -16,7 +16,7 @@ def chrome_options():
     if not gpu:
         _chrome_options.add_argument("--disable-gpu")
     if window_size:
-        _chrome_options.add_argument("--window-size={}".format(window_size))
+        _chrome_options.add_argument(f"--window-size={window_size}")
     if headless:
         _chrome_options.add_argument("--headless")
         _chrome_options.add_argument("--load-images=no")
